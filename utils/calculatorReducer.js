@@ -16,7 +16,7 @@ export const calculatorReducer = (state, { type, payload }) => {
         return state;
       }
       if (payload.digit === "." && state.currentState.includes("."))
-        return state.currentState;
+        return state;
 
       if(state.operation === null && state.previousState){
         return state.previousState;
@@ -36,6 +36,7 @@ export const calculatorReducer = (state, { type, payload }) => {
           operation: payload.digit,
         };
       }
+
       if (state.previousState == null) {
         return {
           ...state,
