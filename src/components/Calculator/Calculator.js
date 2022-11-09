@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import {
   CalculatorWrapper,
   CalculatorContentContainer,
+  CalculatorScreenContainer,
   CalculatorScreen,
+  CurrentOperator,
+  PreviousOperator,
   NumberPad,
   NumberInput,
   ClearInput,
@@ -10,86 +13,54 @@ import {
   EqualInput,
 } from "./Calculator.styles";
 import { FaMinus } from "react-icons/fa";
-
+import { calculatorReducer } from "../../../utils/calculatorReducer";
+import { BTNS } from "../../../constants/Buttons";
+import DigitButton from "../Button/Button";
+import isNumeric from "../../../utils/isNumeric";
+import formatOperand from "../../../utils/formatter";
+import { CALCULATOR_ACTIONS } from "../../../constants/Actions";
 const Calculator = () => {
-  const [currNum, setCurrNum] = useState('');
+  const [{ currentState, previousState, operation }, dispatch] = useReducer(
+    calculatorReducer,
+    {}
+  );
+
+  const numPadValues = BTNS.flat();
 
   return (
     <CalculatorWrapper>
       <CalculatorContentContainer>
-        <CalculatorScreen>
-          <h1>{currNum}</h1>
-        </CalculatorScreen>
+        <CalculatorScreenContainer>
+          <CalculatorScreen>
+            <PreviousOperator>
+              {formatOperand(previousState)} {operation}
+            </PreviousOperator>
+            <CurrentOperator>{formatOperand(currentState)}</CurrentOperator>
+          </CalculatorScreen>
+        </CalculatorScreenContainer>
         <NumberPad>
-          <NumberInput
-            value="1"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            1
-          </NumberInput>
-          <NumberInput
-            value="2"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            2
-          </NumberInput>
-          <NumberInput
-            value="3"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            3
-          </NumberInput>
-          <OperationInput>+</OperationInput>
-          <NumberInput
-            value="4"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            4
-          </NumberInput>
-          <NumberInput
-            value="5"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            5
-          </NumberInput>
-          <NumberInput
-            value="6"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            6
-          </NumberInput>
-          <OperationInput>
-            <FaMinus />
-          </OperationInput>
-          <NumberInput
-            value="7"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            7
-          </NumberInput>
-          <NumberInput
-            value="8"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            8
-          </NumberInput>
-          <NumberInput
-            value="9"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            9
-          </NumberInput>
-          <OperationInput>X</OperationInput>
-          <ClearInput value="C"
-          onClick={(e) => setCurrNum('')}>C</ClearInput>
-          <NumberInput
-            value="0"
-            onClick={(e) => setCurrNum(currNum + e.target.value)}
-          >
-            0
-          </NumberInput>
-          <EqualInput>=</EqualInput>
-          <OperationInput>/</OperationInput>
+          {numPadValues.map((strVal, i) => {
+            let action = "";
+
+            if (strVal === "=") {
+              action = CALCULATOR_ACTIONS.COMPUTATE;
+            } else if (isNumeric(strVal) || strVal === ".") {
+              action = CALCULATOR_ACTIONS.ADD_DIGIT;
+            } else if (strVal === "C") {
+              action = CALCULATOR_ACTIONS.CLEAR;
+            } else {
+              action = CALCULATOR_ACTIONS.CHOOSE_OPERATION;
+            }
+            return (
+              <li key={`numpad_item-${i+1}`}>
+                <DigitButton
+                  dispatch={dispatch}
+                  digit={strVal}
+                  action={action}
+                />
+              </li>
+            );
+          })}
         </NumberPad>
       </CalculatorContentContainer>
     </CalculatorWrapper>

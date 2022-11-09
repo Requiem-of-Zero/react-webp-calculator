@@ -8,17 +8,30 @@ export const CalculatorWrapper = styled.div`
 export const CalculatorContentContainer = styled.div`
   margin: 0 auto;
   width: 25%;
-  background: blue;
+  background: #AACFE7;
+`;
+
+export const CalculatorScreenContainer = styled.div`
+
 `;
 
 export const CalculatorScreen = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding: 0 20px;
   font-size: 48px;
   background: #f3fbec;
   height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const CurrentOperator = styled.div`
+
+`;
+
+export const PreviousOperator = styled.div`
+
 `;
 
 export const NumberPad = styled.ul`
