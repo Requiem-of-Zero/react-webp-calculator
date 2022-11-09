@@ -16,6 +16,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hot-loader": "latest",
+    "react-icons": "^4.6.0",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
