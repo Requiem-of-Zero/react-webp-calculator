@@ -3,19 +3,17 @@ import styled from "styled-components";
 export const CalculatorWrapper = styled.div`
   width: 100%;
   height: 100vh;
+  z-index: 10;
 `;
 
 export const CalculatorContentContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 6rem);
-  grid-template-rows: minmax(7rem, auto) 1fr;
   justify-content: center;
   width: 500px;
   margin: 20px auto 0 auto;
-  padding: 0 30px 20px 0;
+  padding: 0 0 20px 0;
   background: #4c4c4c;
   border-radius: 15px;
-  z-index: 8;
 `;
 
 export const CalculatorScreen = styled.div`

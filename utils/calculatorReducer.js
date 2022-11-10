@@ -4,12 +4,12 @@ import computate from "./computate";
 export const calculatorReducer = (state, { type, payload }) => {
   switch (type) {
     case CALCULATOR_ACTIONS.ADD_DIGIT:
-      if(state.overwrite){
+      if (state.overwrite) {
         return {
           ...state,
           currentState: payload.digit,
           overwrite: false,
-        }
+        };
       }
       if (payload.digit === "0" && state.currentState === "0") {
         return state;
@@ -17,7 +17,7 @@ export const calculatorReducer = (state, { type, payload }) => {
       if (payload.digit === "." && state.currentState.includes("."))
         return state;
 
-      if(state.operation === null && state.previousState){
+      if (state.operation === null && state.previousState) {
         return state.previousState;
       }
       return {
@@ -52,7 +52,7 @@ export const calculatorReducer = (state, { type, payload }) => {
       };
     case CALCULATOR_ACTIONS.CLEAR:
       return {};
-      
+
     case CALCULATOR_ACTIONS.COMPUTATE:
       if (
         state.operation == null ||
@@ -62,12 +62,12 @@ export const calculatorReducer = (state, { type, payload }) => {
         return state;
       }
 
-      return{
+      return {
         ...state,
         previousState: null,
         operation: null,
         overwrite: true,
-        currentState: computate(state)
-      }
+        currentState: computate(state),
+      };
   }
 };

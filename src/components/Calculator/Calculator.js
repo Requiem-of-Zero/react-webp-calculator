@@ -1,19 +1,19 @@
 import React, { useReducer } from "react";
 import {
-  CalculatorWrapper,
   CalculatorContentContainer,
   CalculatorScreen,
+  CalculatorWrapper,
   CurrentOperator,
-  PreviousOperator,
   NumberPad,
+  PreviousOperator,
 } from "./Calculator.styles";
 
-import { calculatorReducer } from "../../../utils/calculatorReducer";
-import { BTNS } from "../../../constants/Buttons";
-import DigitButton from "../Button/Button";
-import isNumeric from "../../../utils/isNumeric";
-import formatOperand from "../../../utils/formatter";
 import { CALCULATOR_ACTIONS } from "../../../constants/Actions";
+import { BTNS } from "../../../constants/Buttons";
+import { calculatorReducer } from "../../../utils/calculatorReducer";
+import formatOperand from "../../../utils/formatter";
+import isNumeric from "../../../utils/isNumeric";
+import DigitButton from "../Button/Button";
 
 const Calculator = () => {
   const [{ currentState, previousState, operation }, dispatch] = useReducer(
@@ -41,7 +41,7 @@ const Calculator = () => {
             if (strVal === "exp") {
               action = CALCULATOR_ACTIONS.CHOOSE_OPERATION;
               color = "#F2FFA0";
-              textColor = 'red';
+              textColor = "#F1A3AA";
             } else if (isNumeric(strVal) || strVal === ".") {
               action = CALCULATOR_ACTIONS.ADD_DIGIT;
             } else if (strVal === "=") {
@@ -51,7 +51,7 @@ const Calculator = () => {
             } else if (strVal === "x") {
               action = CALCULATOR_ACTIONS.CHOOSE_OPERATION;
               color = "#F2FFA0";
-              textColor = 'black'
+              textColor = "black";
             } else if (strVal === "C") {
               spanTwo = "span-two";
               action = CALCULATOR_ACTIONS.CLEAR;
@@ -59,7 +59,7 @@ const Calculator = () => {
             } else {
               action = CALCULATOR_ACTIONS.CHOOSE_OPERATION;
               color = "#F2FFA0";
-              textColor = 'black'
+              textColor = "black";
             }
 
             return (

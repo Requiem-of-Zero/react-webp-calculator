@@ -1,8 +1,8 @@
 import React, { useReducer } from "react";
 import { hot } from "react-hot-loader/root";
-import GlobalStyle from "./globalStyles";
-import Calculator from "./components/Calculator/Calculator";
 import { calculatorReducer } from "../utils/calculatorReducer";
+import Calculator from "./components/Calculator/Calculator";
+import GlobalStyle from "./globalStyles";
 
 class App extends React.Component {
   render() {
