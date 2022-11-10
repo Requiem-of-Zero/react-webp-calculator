@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
+import { ButtonWrapper } from "./Button.styles";
 
-const DigitButton = ({dispatch, digit, action}) => {
+const DigitButton = ({
+  dispatch,
+  digit,
+  action,
+  span,
+  buttonColor,
+  textColor,
+}) => {
   return (
-    <button onClick={() => dispatch({type: action, payload: {digit}})}>{digit}</button>
-  )
-}
+    <ButtonWrapper
+      textColor={textColor}
+      buttonColor={buttonColor}
+      className={span}
+      onClick={() => dispatch({ type: action, payload: { digit } })}
+    >
+      {digit}
+    </ButtonWrapper>
+  );
+};
 
-export default DigitButton
+export default DigitButton;

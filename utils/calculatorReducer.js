@@ -4,7 +4,6 @@ import computate from "./computate";
 export const calculatorReducer = (state, { type, payload }) => {
   switch (type) {
     case CALCULATOR_ACTIONS.ADD_DIGIT:
-      console.log(state)
       if(state.overwrite){
         return {
           ...state,
@@ -53,11 +52,12 @@ export const calculatorReducer = (state, { type, payload }) => {
       };
     case CALCULATOR_ACTIONS.CLEAR:
       return {};
+      
     case CALCULATOR_ACTIONS.COMPUTATE:
       if (
-        state.operation === null ||
-        state.currentState === null ||
-        state.previousState === null
+        state.operation == null ||
+        state.currentState == null ||
+        state.previousState == null
       ) {
         return state;
       }

@@ -2,66 +2,60 @@ import styled from "styled-components";
 
 export const CalculatorWrapper = styled.div`
   width: 100%;
-  transform: translateY(20%);
+  height: 100vh;
 `;
 
 export const CalculatorContentContainer = styled.div`
-  margin: 0 auto;
-  width: 25%;
-  background: #AACFE7;
-`;
-
-export const CalculatorScreenContainer = styled.div`
-
+  display: grid;
+  grid-template-columns: repeat(4, 6rem);
+  grid-template-rows: minmax(7rem, auto) 1fr;
+  justify-content: center;
+  width: 500px;
+  margin: 20px auto 0 auto;
+  padding: 0 30px 20px 0;
+  background: #4c4c4c;
+  border-radius: 15px;
+  z-index: 8;
 `;
 
 export const CalculatorScreen = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding: 0 20px;
-  font-size: 48px;
-  background: #f3fbec;
-  height: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 420px;
+  height: 150px;
+  background: #d5e5ae;
+  grid-column: 1/-1;
+  border-radius: 15px;
+  word-wrap: break-word;
+  word-break: break-all;
+  margin-top: 40px;
+  cursor: default;
 `;
 
 export const CurrentOperator = styled.div`
-
+  padding-right: 10px;
+  color: #4c4c4c;
+  font-size: 42px;
 `;
 
 export const PreviousOperator = styled.div`
-
+  padding-right: 20px;
+  color: rgba(255, 255 255, 0.75);
+  font-size: 24px;
 `;
 
 export const NumberPad = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
-  padding: 0 35px 35px 35px;
+  grid-template-columns: repeat(4, 6rem);
+  grid-template-rows: minmax(7rem, auto) repeat(4, 6rem);
+  justify-content: center;
+  width: 420px;
+  padding: 0;
+  gap: 10px;
 
-  li {
-    list-style: none;
-    padding: 30px 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
-    font-size: 26px;
-    text-align: center;
-    font-weight: 800;
+  .span-two {
+    grid-column: span 2;
   }
-`;
-
-export const NumberInput = styled.li`
-  background: #efefef;
-`;
-
-export const ClearInput = styled.li`
-  background: #f1a3aa;
-`;
-
-export const OperationInput = styled.li`
-  background: #f2ffa0;
-`;
-
-export const EqualInput = styled.li`
-  background: #efefef;
 `;
